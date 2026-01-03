@@ -1,23 +1,689 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MovingService",
+      "name": "같은아파트이사 전문 견적사이트",
+      "url": "https://yourdomain.com",
+      "areaServed": "대한민국 전역",
+      "provider": {
+        "@type": "Organization",
+        "name": "같은아파트이사 전문 플랫폼",
+        "url": "https://yourdomain.com"
+      },
+      "description": "같은 아파트 단지 내 이사, 단거리 이사 전문 서비스입니다. 합리적인 비용과 전문적인 포장 기술로 안전하고 신속한 이사를 보장합니다. 같은동 이사, 층간 이사 등 단지 내 모든 유형의 이사를 전문적으로 처리합니다.",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "같은 아파트 이사 서비스 종류",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "같은 단지 포장이사"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "300000",
+              "priceCurrency": "KRW",
+              "description": "같은 아파트 단지 내 이사를 위한 프리미엄 포장이사 서비스"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "같은 동 반포장이사"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "200000",
+              "priceCurrency": "KRW",
+              "description": "같은 아파트 동 내 이사를 위한 합리적인 반포장이사 서비스"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Product",
+              "name": "원룸 단거리 이사"
+            },
+            "priceSpecification": {
+              "@type": "PriceSpecification",
+              "price": "150000",
+              "priceCurrency": "KRW",
+              "description": "원룸, 오피스텔 단거리 이사 서비스"
+            }
+          }
+        ]
+      }
+    }
+  </script>
+
+  <!-- Google Fonts - Noto Sans KR -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
+
+  <style>
+    /* Reset and Typography */
+    body {
+      font-family: "Noto Sans KR", sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.8;
+      background-color: #f7f9fc; /* Soft background color */
+      color: #333;
+      word-break: keep-all; /* Korean word wrapping */
+    }
+    a {
+      text-decoration: none;
+      color: #007bff; /* Standard blue link color */
+    }
+    main {
+      max-width: 1100px; /* Wider content area */
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header and Navigation */
+    header {
+      background-color: #0056a0; /* Deep blue header */
+      color: white;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    header h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin: 0.5rem 0 1rem;
+      letter-spacing: -1px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    header p {
+      font-size: 1.2rem;
+      font-weight: 300;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 1.5rem 0 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease, transform 0.3s ease;
+      font-size: 1.1rem;
+      padding: 0.5rem 0;
+      border-bottom: 2px solid transparent;
+    }
+    nav a:hover {
+      color: #ffc107; /* Bright yellow accent */
+      border-bottom: 2px solid #ffc107;
+      transform: translateY(-2px);
+    }
+
+    /* Main Content Sections */
+    section {
+      background-color: white;
+      padding: 3rem;
+      margin-top: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    }
+    h2 {
+      color: #004d99; /* Heading color */
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-top: 0;
+      padding-bottom: 0.8rem;
+      border-bottom: 3px solid #e0f0ff; /* Light blue underline */
+    }
+    h3 {
+      color: #0056a0;
+      font-size: 1.7rem;
+      margin-top: 2.5rem;
+      border-left: 5px solid #0056a0;
+      padding-left: 1rem;
+    }
+    p {
+      text-align: justify;
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* Call to Action Button */
+    .cta-button {
+      display: inline-block;
+      background-color: #ff6600; /* Orange CTA */
+      color: white;
+      font-weight: 700;
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      text-decoration: none;
+      margin: 2rem 0;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      text-align: center;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+    .cta-button:hover {
+      background-color: #e65c00;
+      transform: translateY(-2px);
+    }
+
+    /* Keywords and Tags */
+    .keyword-tags {
+      margin: 2rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+    .keyword-tags a {
+      background-color: #e0f0ff; /* Light blue tag background */
+      color: #0066cc; /* Blue text color */
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    .keyword-tags a:hover {
+      background-color: #b3d1ff;
+      transform: scale(1.05);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 1.2rem;
+      border: 1px solid #e0e0e0;
+      text-align: center;
+      font-size: 1rem;
+    }
+    th {
+      background-color: #0056a0;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    tr:nth-child(even) {
+      background-color: #f8f8f8;
+    }
+    tr:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* FAQ Accordion */
+    dl dt {
+      font-weight: 700;
+      margin-top: 1.5rem;
+      cursor: pointer;
+      color: #0066cc;
+      background-color: #f5fafd;
+      padding: 1.2rem;
+      border-left: 5px solid #0066cc;
+      transition: background-color 0.3s ease;
+      border-radius: 4px;
+    }
+    dl dt:hover {
+      background-color: #e6f2ff;
+    }
+    dl dd {
+      margin: 0.5rem 0 1.5rem 1rem;
+      padding: 1rem 1.5rem;
+      background-color: #ffffff;
+      border-left: 2px dashed #ccc;
+      display: none;
+      font-size: 0.95rem;
+    }
+    dl dt.active + dd {
+      display: block;
+    }
+
+    /* Input Form Styling */
+    form {
+      background-color: #f9f9f9;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: #333;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group select,
+    .form-group textarea {
+      width: calc(100% - 24px);
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: #007bff;
+      outline: none;
+    }
+    .form-group button {
+      background-color: #007bff;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
+    }
+    .form-group button:hover {
+      background-color: #0056a0;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #777;
+      background-color: #e0eaf1;
+      margin-top: 3rem;
+      border-top: 1px solid #d0dbe4;
+    }
+
+    /* External Links */
+    .external-link {
+      display: inline-block;
+      color: #0066cc;
+      font-weight: 500;
+      margin-top: 1rem;
+      text-decoration: underline;
+    }
+
+    /* Graphs and Charts (placeholder for visual data presentation) */
+    .data-chart-container {
+      margin: 2rem 0;
+      padding: 2rem;
+      background-color: #fdfdfd;
+      border: 1px solid #eee;
+      border-radius: 8px;
+    }
+    .chart-label {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0056a0;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .bar-chart {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      height: 200px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 10px;
+    }
+    .bar-chart > div {
+      width: 18%;
+      background-color: #007bff;
+      position: relative;
+      border-radius: 4px 4px 0 0;
+      transition: all 0.5s ease;
+    }
+    .bar-chart .bar1 { height: 70%; background-color: #007bff; }
+    .bar-chart .bar2 { height: 85%; background-color: #ffc107; }
+    .bar-chart .bar3 { height: 60%; background-color: #28a745; }
+    .bar-chart .bar4 { height: 95%; background-color: #dc3545; }
+    .bar-chart .bar-label {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #555;
+    }
+    .bar-chart .bar-value {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>같은 아파트 이사 전문 | 단거리 이사 비용 비교 견적 사이트</h1>
+    <p>같은 단지, 같은 동, 층간 이사! 2026년 최적화된 맞춤 견적으로 고객님의 이사 고민을 해결해 드립니다.</p>
     <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
+      <ul>
+        <li><a href="#intro">서비스 소개</a></li>
+        <li><a href="#cost_analysis">이사 비용 분석</a></li>
+        <li><a href="#process">이사 진행 절차</a></li>
+        <li><a href="#service_guide">서비스 종류</a></li>
+        <li><a href="#tips">이사 팁</a></li>
+        <li><a href="#faq">자주 묻는 질문</a></li>
+      </ul>
     </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+  </header>
+
+  <main>
+    <section id="intro">
+      <h2>같은아파트이사, 단거리 이사의 새로운 기준을 제시합니다</h2>
+      <p>이사, 이제 더 이상 멀리 가는 것만이 아닙니다. 최근에는 거주 만족도가 높은 아파트 단지 내에서 더 넓은 평수로 이동하거나, 층간 이동을 하는 **같은아파트이사** 수요가 크게 증가하고 있습니다. 하지만 짧은 거리라고 해서 이사 비용이 무조건 저렴할 것이라고 생각하면 오산입니다. 일반적인 장거리 이사와는 또 다른 변수가 많기 때문에 **같은 단지 이사 전문 업체**의 체계적인 접근이 필요합니다.</p>
+      <p>저희 **같은아파트이사 견적사이트**는 고객님의 특별한 이사 상황을 정확하게 파악하여 최적의 솔루션을 제공합니다. 단순히 짐을 옮기는 것을 넘어, 아파트 관리 규정 준수, 엘리베이터 사용 예약, 층간 소음 최소화 등 **같은 동 이사**에 특화된 노하우를 보유하고 있습니다. 2026년 데이터를 기반으로, **단거리 이사 비용**의 거품을 제거하고 합리적인 **이사 견적**을 제안하여, 고객님의 소중한 이삿짐을 안전하고 신속하게 옮겨드립니다.</p>
+
+      <h3>"같은아파트이사"가 일반 이사와 다른 점: 단지 내 이사의 특징</h3>
+      <ul>
+        <li><strong>관리사무소 규정 준수:</strong> 일반 이사는 비교적 자유롭지만, **같은 단지 이사**는 아파트 관리사무소의 엘리베이터 사용 시간, 사다리차 진입 가능 여부, 이사 전후 청소 및 소음 방지 규정을 엄격하게 따라야 합니다. 저희는 이러한 규정을 사전에 파악하여 고객님의 이사 준비를 돕습니다.</li>
+        <li><strong>단거리 물류의 전문성:</strong> 이동 거리가 짧아 운송비는 절약되지만, 짐을 내리고 싣는 작업 인력의 투입 시간은 비슷합니다. 따라서 **같은아파트이사 비용**은 장거리 이사 비용 계산법과는 다르게 책정됩니다. 저희는 이러한 **단거리 이사**에 최적화된 비용 산출 기준을 적용합니다.</li>
+        <li><strong>피해 보상 및 사후 관리:</strong> 단지 내에서 짧게 이동하는 동안에도 가구나 가전제품의 손상이 발생할 수 있습니다. 저희는 **이사 견적** 과정에서 모든 품목을 꼼꼼히 체크하고, 이사 중 발생할 수 있는 사고에 대비한 책임 보험에 가입된 업체만을 엄선하여 고객님의 권익을 보호합니다.</li>
+      </ul>
+
+      <div class="keyword-tags" aria-label="연관 검색 키워드">
+        <a href="#cost_analysis">같은아파트이사 비용</a>
+        <a href="#tips">단지 내 이사 팁</a>
+        <a href="#service_guide">같은 동 이사 서비스</a>
+        <a href="#cost_analysis">단거리 이사 견적</a>
+        <a href="#process">같은 아파트 이사 절차</a>
+        <a href="#tips">아파트 관리규정 이사</a>
+        <a href="#service_guide">소형 이사</a>
+        <a href="#cost_analysis">이사 잘하는 곳 추천</a>
+        <a href="#tips">손없는날 이사 비용</a>
+      </div>
+    </section>
+
+    <section id="cost_analysis">
+      <h2>2026년 같은아파트이사 비용 분석 및 합리적인 견적 받기</h2>
+      <p><strong>같은아파트이사 비용</strong>은 '짧은 거리 = 저렴한 비용'이라는 단순 논리로만 접근해서는 안 됩니다. **이사 비용**은 총 6가지 핵심 요인에 의해 결정됩니다. 특히 **같은 단지 이사**는 일반 이사와 달리 운송비 비중이 낮고, 인건비와 부대 서비스 비용 비중이 높습니다. 저희 **같은아파트이사 견적사이트**는 이러한 특성을 고려하여 합리적인 비용을 제안합니다.</p>
+
+      <h3>같은아파트이사 비용을 결정하는 6가지 주요 요인</h3>
+      <ol>
+        <li><strong>이사 종류 (포장/반포장):</strong> 포장이사는 모든 것을 업체가 처리하지만, 반포장이사는 고객이 잔짐을 직접 포장하여 인건비를 줄일 수 있습니다. 단거리 이사라도 짐이 많다면 포장이사가 편리합니다.</li>
+        <li><strong>이사 짐의 양 (평수):</strong> 짐이 많을수록 작업 인원이 추가되고 포장재 사용량이 늘어납니다. 24평, 30평, 40평 아파트에 따라 이사 비용이 달라집니다. 짐의 양을 정확하게 파악하기 위해 **방문 견적**은 필수입니다.</li>
+        <li><strong>작업 환경 (출발지/도착지 층수 및 엘리베이터 유무):</strong> 층수가 높고 엘리베이터 사용이 불가하면 **사다리차 비용**이 추가됩니다. 특히 같은 아파트라도 동이 다르고 층수가 높다면 사다리차 2대를 사용해야 할 수도 있습니다.</li>
+        <li><strong>이사 날짜 (손없는날 및 성수기/비수기):</strong> **손없는날**은 이사 수요가 폭증하는 날로, **같은아파트이사**라도 평소보다 10~20%의 비용이 상승합니다. 봄(3~5월)과 가을(9~11월) 성수기에도 비용이 상승합니다.</li>
+        <li><strong>추가 서비스 (에어컨 이전 설치, 입주 청소 등):</strong> 에어컨, 벽걸이 TV 이전 설치, 전문 입주 청소 등 부대 서비스가 포함되면 총 **이사 비용**이 증가합니다.</li>
+        <li><strong>지역별 업체 경쟁률:</strong> 지역에 따라 업체 경쟁률이 다릅니다. 서울 강남, 서초, 송파 등 고가 아파트가 많은 지역은 서비스 품질 요구가 높아 비용이 상대적으로 높을 수 있습니다. 반면, 부산 해운대, 대구 수성구, 대전 유성구, 광주 서구 등 지방 광역시의 신축 아파트 단지는 업체 수가 많아 경쟁적인 가격을 형성하기도 합니다.</li>
+      </ol>
+
+      <h3>2026년 지역별 같은아파트이사 예상 비용 비교표 (평균치 기준)</h3>
+      <p>아래 표는 **같은아파트이사**의 평균적인 **이사 비용**을 비교한 것입니다. 층수와 짐의 양에 따라 변동 폭이 크므로 참고용으로 활용하시고, 정확한 **이사 견적**은 **방문 견적**을 통해 받아보시길 바랍니다.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>이사 평수</th>
+            <th>같은 단지 포장이사 (평일)</th>
+            <th>같은 단지 포장이사 (주말/손없는날)</th>
+            <th>이사 작업 인원 (예상)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>20평대 (원룸, 투룸 포함)</strong></td>
+            <td><strong>30만원 ~ 45만원</strong></td>
+            <td><strong>40만원 ~ 60만원</strong></td>
+            <td>남성 2명</td>
+          </tr>
+          <tr>
+            <td><strong>30평대 (일반 아파트)</strong></td>
+            <td><strong>40만원 ~ 65만원</strong></td>
+            <td><strong>55만원 ~ 80만원</strong></td>
+            <td>남성 2명, 여성 1명</td>
+          </tr>
+          <tr>
+            <td><strong>40평대 이상 (대형 아파트)</strong></td>
+            <td><strong>60만원 ~ 90만원</strong></td>
+            <td><strong>80만원 ~ 120만원</strong></td>
+            <td>남성 3명, 여성 1명 이상</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="data-chart-container">
+        <div class="chart-label">같은아파트이사 비용 요인별 비중 분석</div>
+        <div class="bar-chart">
+          <div class="bar1" style="height: 70%;">
+            <span class="bar-value">70%</span>
+            <span class="bar-label">인건비 및 포장비</span>
+          </div>
+          <div class="bar2" style="height: 85%;">
+            <span class="bar-value">85%</span>
+            <span class="bar-label">사다리차/엘리베이터 비용</span>
+          </div>
+          <div class="bar3" style="height: 60%;">
+            <span class="bar-value">60%</span>
+            <span class="bar-label">이사 짐의 양</span>
+          </div>
+          <div class="bar4" style="height: 95%;">
+            <span class="bar-value">95%</span>
+            <span class="bar-label">날짜 변동성</span>
+          </div>
+        </div>
+      </div>
+
+      <p><strong>참고:</strong> 위 비용은 단거리 이사에만 해당하며, 사다리차 1회 사용 기준입니다. 층수가 높고 동간 이동 시 사다리차를 2회 사용해야 하거나, 특수 작업이 추가될 경우 비용이 상승할 수 있습니다.</p>
+
+      <a href="#quote_form" class="cta-button" aria-label="같은아파트 이사 비용 무료 견적 받기">무료 견적 신청하기</a>
+    </section>
+
+    <section id="process">
+      <h2>같은 단지 이사 전문 서비스 진행 절차</h2>
+      <p>단거리 이사는 장거리 이사보다 준비할 것이 적다고 생각할 수 있지만, 아파트 단지 내에서의 이동이므로 오히려 세밀한 계획이 필요합니다. 저희 **같은아파트이사 견적사이트**는 고객님의 편리하고 안전한 이사를 위해 4단계 맞춤 프로세스를 제공합니다.</p>
+
+      <h3>1. 전화 상담 및 방문 견적 요청</h3>
+      <p>가장 먼저 이사 날짜, 이사할 아파트의 동과 층수, 대략적인 평수 등을 알려주시면 1차 상담이 진행됩니다. 이후, 전문 견적 담당자가 고객님의 댁을 직접 방문하여 짐의 양을 정확하게 확인합니다. **같은아파트이사**의 경우, 짐의 양이 비용의 가장 큰 변수이므로 **방문 견적**을 통해 정확한 짐의 종류와 양을 파악합니다. 방문 견적 시에는 이사 환경(출발지/도착지 층수, 엘리베이터 사용 가능 여부, 특수 물품 등)을 꼼꼼히 체크하여 **추가 비용**이 발생하지 않도록 합니다.</p>
+
+      <h3>2. 계약 체결 및 이사 준비 (아파트 관리 규정 확인)</h3>
+      <p>제시된 **이사 견적서**를 확인하고 계약을 체결합니다. 계약 시에는 반드시 **같은아파트이사**에 특화된 서비스 내용(엘리베이터 사용료, 층간 소음 최소화 규정 등)을 명확히 명시합니다. 특히 아파트 단지마다 다른 이사 규정을 사전에 파악하여 고객님께 안내해 드립니다. 고객님께서는 귀중품, 현금, 유가증권 등은 직접 보관하시고, 냉장고의 음식물은 미리 정리하시는 등 이사 당일 작업이 원활하도록 준비해 주시면 됩니다.</p>
+
+      <h3>3. 이사 당일 작업 및 단거리 운송</h3>
+      <p>약속된 시간에 전문 이사 팀이 방문하여 이사 작업을 시작합니다. **같은아파트이사**는 이동 거리가 짧아 신속하게 진행됩니다. 이사 팀은 짐의 종류에 맞는 전용 포장재를 사용하여 꼼꼼하게 포장하며, 특히 가구와 가전제품은 파손 방지를 위해 에어캡과 전용 포장 커버로 이중 포장합니다. 짧은 거리를 이동하더라도 짐의 종류별로 박스에 담아 라벨링하여 분실 위험을 최소화합니다. 이사 차량에 짐을 적재한 후, 도착지로 이동하여 고객님이 원하는 위치에 가구와 가전제품을 배치하고 포장된 짐을 풀어서 정리해 드립니다.</p>
+
+      <h3>4. 마무리 및 사후 관리 (피해 보상)</h3>
+      <p>모든 짐의 배치와 정리가 끝나면, 이사 팀장은 고객님과 함께 빠뜨린 물건이나 파손된 물건은 없는지 최종 확인합니다. 냉장고, 싱크대, 신발장 등 간단한 마무리 청소도 포함됩니다. 만약 이사 과정에서 **피해**가 발생했을 경우, 즉시 현장에서 이사 팀장에게 알리고 사진이나 동영상으로 증거를 남겨야 합니다. **같은아파트이사** 중에도 이사화물 표준약관에 따라 적절한 보상을 받을 수 있도록 안내해 드립니다.</p>
+    </section>
+
+    <section id="service_guide">
+      <h2>같은아파트이사 맞춤형 서비스 종류</h2>
+      <p>같은 단지 내 이사라고 하더라도 고객님의 상황과 예산에 따라 원하는 서비스 형태가 다를 수 있습니다. 저희 **같은아파트이사 견적사이트**는 고객님의 니즈에 맞춘 다양한 **단거리 이사** 서비스를 제공합니다. 고객님의 예산과 편리성을 고려하여 가장 적합한 서비스를 선택하세요.</p>
+
+      <div class="data-chart-container">
+        <div class="chart-label">같은아파트이사 맞춤형 서비스 비교</div>
+        <table>
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>같은 단지 포장이사</th>
+              <th>같은 단지 반포장이사</th>
+              <th>같은 단지 일반이사</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>서비스 범위</strong></td>
+              <td>포장, 운송, 정리, 청소 모두 업체 담당 (가장 편리함)</td>
+              <td>큰 짐 포장/운송, 잔짐 고객 포장/정리 (부분적 편리함)</td>
+              <td>운송만 업체 담당, 포장/정리 모두 고객 담당 (가장 저렴함)</td>
+            </tr>
+            <tr>
+              <td><strong>적합 대상</strong></td>
+              <td>맞벌이 부부, 짐이 많은 가구, 완벽한 정리 희망</td>
+              <td>부분적인 정리만 원하는 가구, 이사 비용 절감 희망</td>
+              <td>짐이 적은 원룸/투룸, 예산 절감 희망, 직접 정리 가능</td>
+            </tr>
+            <tr>
+              <td><strong>예상 비용</strong></td>
+              <td>가장 높음</td>
+              <td>중간</td>
+              <td>가장 낮음</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>같은아파트이사, 원룸 이사 및 소형 이사</h3>
+      <p>**같은아파트이사** 서비스 중에서도 **원룸 이사**나 **소형 이사**는 짐이 적고 이동 거리가 짧아 비용이 더욱 합리적입니다. **원룸이사**의 경우 짐의 양에 따라 용달차 1대로도 충분히 해결이 가능하며, 1~2명의 작업 인원만으로도 신속하게 이사를 마무리할 수 있습니다. 특히 짐이 적은 1~2인 가구라면 **같은 동 반포장이사**를 선택하여 비용을 더욱 절약할 수 있습니다.</p>
+      <p><strong>주요 서비스 지역 키워드 (전국)</strong><br>서울 (강남, 송파, 서초, 강동, 강북, 마포, 영등포, 구로, 노원, 은평), 경기 (분당, 판교, 일산, 파주 운정, 동탄, 광교, 위례, 김포 한강신도시, 하남 미사), 인천 (송도, 청라, 영종), 부산 (해운대, 수영, 동래, 연제), 대구 (수성구, 달서구, 동구), 대전 (유성구, 서구), 광주 (서구, 광산구), 울산 (남구, 북구), 세종시, 강원 (원주, 춘천), 충북 (청주, 천안), 경북 (포항, 구미), 경남 (창원, 김해), 전북 (전주, 익산), 전남 (순천, 여수), 제주도 등 대한민국 전역의 아파트 단지.</p>
+
+      <h3>"함께 많이 찾는" 키워드 분석 및 정보 제공</h3>
+      <p>**같은아파트이사**를 검색하는 고객님들은 **사다리차 비용**, **이사 청소**, **에어컨 이전 설치** 등의 키워드를 함께 검색합니다. 저희는 고객님의 편의를 위해 이러한 부가 서비스까지 원스톱으로 제공합니다.</p>
+      <ul>
+        <li><strong>사다리차:</strong> 같은 동 이사라도 층수가 높고 엘리베이터 사용에 제한이 있다면 사다리차는 필수입니다. 이사 당일 아파트 관리 규정을 사전에 파악하여 사다리차 사용 가능 여부와 비용을 견적에 포함해 드립니다.</li>
+        <li><strong>에어컨 이전 설치:</strong> 이사 당일 에어컨 이전 설치 전문가를 연결하여 냉매 주입 및 설치까지 깔끔하게 처리해 드립니다.</li>
+        <li><strong>입주 청소/이사 청소:</strong> 이사 후 새로운 보금자리를 깨끗하게 정리할 수 있도록 전문 청소 서비스와 연계해 드립니다.</li>
+      </ul>
+    </section>
+
+    <section id="tips">
+      <h2>같은아파트이사 비용 절약 및 믿을 수 있는 업체 선택 요령</h2>
+      <p>**같은아파트이사**를 성공적으로 마무리하기 위해서는 몇 가지 핵심 팁을 알고 있어야 합니다. **단거리 이사**라고 해도 이사 과정은 복잡하며, 불필요한 비용을 절감하기 위한 노력이 필요합니다. 다음은 **같은아파트이사 견적사이트**가 추천하는 현명한 이사 준비 팁입니다.</p>
+
+      <h3>✅ 방문 견적은 필수입니다!</h3>
+      <p>전화나 온라인 견적은 짐의 양을 정확하게 파악하기 어렵습니다. 특히 짐이 많아 예상 비용보다 **추가 비용**이 발생할 수 있습니다. **같은아파트이사**라도 짐의 양과 특수 품목(피아노, 가구 분해/조립 등)을 직접 눈으로 확인해야만 정확한 **이사 견적**을 산출할 수 있습니다. 최소 2~3곳의 업체로부터 **방문 견적**을 받아 비용과 서비스 내용을 비교해 보세요. 이 과정에서 업체의 전문성과 신뢰도를 파악할 수 있습니다.</p>
+
+      <h3>✅ 아파트 관리사무소 규정 사전에 확인하기</h3>
+      <p><strong>같은아파트이사</strong>의 가장 큰 특징은 단지 내 규정을 따라야 한다는 점입니다. 엘리베이터 사용 시간, 이사 작업 시간 제한, 사다리차 진입 가능 여부 등을 사전에 확인해야 합니다. 규정을 위반할 경우 과태료가 부과되거나 이사 작업이 지연될 수 있습니다. 저희 **같은아파트이사 견적사이트**는 고객님을 대신하여 해당 정보를 확인하고 이사 계획에 반영합니다.</p>
+
+      <h3>✅ 계약서 내용을 꼼꼼히 확인하세요!</h3>
+      <p><strong>구두 계약은 절대 금물입니다.</strong> 반드시 서면 계약서를 작성하고, 계약서에 **이사 비용**, **추가 비용 발생 조건**, **피해 보상 규정**, **이사 시간**, **작업 인원**, **차량 종류** 등을 명확히 명시해야 합니다. 특히 **같은 단지 이사**의 경우, 운송비 대신 인건비 비중이 높으므로 인력 구성(남성, 여성 인원)을 명확히 하는 것이 중요합니다. 한국소비자원의 **이사화물 표준약관**을 참고하여 계약서 내용을 확인해 보세요.</p>
+      <a href="https://www.ftc.go.kr/policy/policy_02.jsp?type=policy&pageid=255" target="_blank" rel="noopener noreferrer" class="external-link">공정거래위원회 이사화물 표준약관 확인하기</a>
+
+      <h3>✅ 이사 시기 선택의 중요성 (손없는날)</h3>
+      <p>**손없는날 이사**는 이사 비용이 상승하는 주요 요인입니다. 많은 사람들이 이사 길일이라고 믿는 **손없는날**은 수요가 집중되어 **같은아파트이사**라도 비용이 크게 오릅니다. 굳이 길일을 따지지 않는다면 평일이나 **손없는날**을 피하여 이사하면 비용을 절약할 수 있습니다. 특히 이사 성수기(봄, 가을)를 피하는 것도 좋은 방법입니다. **포장이사 견적**은 날짜에 따라 크게 달라질 수 있으므로, 여러 날짜를 비교해 보는 것이 좋습니다.</p>
+      <a href="https://namu.wiki/w/%EC%86%90%EC%97%86%EB%8A%94%EB%82%A0" target="_blank" rel="noopener noreferrer" class="external-link">손없는날에 대한 정보 나무위키에서 더 알아보기</a>
+
+      <h3>✅ 허가된 관허업체인지 확인하세요!</h3>
+      <p>이사 업체가 관청으로부터 정식 허가를 받은 관허업체인지 확인하는 것은 매우 중요합니다. 이는 **피해 보상**과 직결되는 문제입니다. 무허가 업체는 이사 도중 파손이나 분실이 발생했을 때 보상을 받기 어렵습니다. **국토교통부**에서 운영하는 화물운송정보시스템 등을 통해 정식 허가 여부를 확인할 수 있습니다. 저희 **같은아파트이사 견적사이트**는 100% 관허업체만을 연결해 드립니다.</p>
+      <a href="https://www.kca.go.kr/home/main.do" target="_blank" rel="noopener noreferrer" class="external-link">한국소비자원 홈페이지 방문하기</a>
+    </section>
+
+    <section id="faq">
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <dl>
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 같은아파트이사인데 왜 방문 견적을 받아야 하나요?</strong></dt>
+        <dd>전화 견적은 이사 비용을 정확하게 산출하기 어렵습니다. 짐의 양, 특수 가구, 엘리베이터 사용 가능 여부 등 **같은 단지 이사**의 변수가 많기 때문입니다. **방문 견적**을 통해 정확한 짐의 양을 파악하고, 아파트 관리 규정을 확인하여 **이사 비용**을 확정하는 것이 **추가 비용** 발생을 막고 만족스러운 이사를 보장하는 가장 확실한 방법입니다. 방문 견적은 무료로 진행되므로 부담 없이 신청하세요.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 엘리베이터 사용료는 누가 내야 하나요?</strong></dt>
+        <dd>엘리베이터 사용료는 아파트 관리사무소마다 규정이 다릅니다. 이사 비용에 포함되는 경우도 있고, 고객님이 직접 관리사무소에 납부해야 하는 경우도 있습니다. **같은아파트이사** 전문 업체는 이러한 규정을 사전에 파악하여 고객님께 안내해 드립니다. 계약 시 **이사 견적서**에 엘리베이터 사용료 포함 여부를 명시하는 것이 중요합니다.</dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 이사 중 짐이 파손되거나 분실되면 어떻게 보상받나요?</strong></dt>
+        <dd>저희 제휴 업체들은 모두 적재물 배상 책임 보험에 가입되어 있어 이사 중 발생한 파손 및 분실에 대해 규정에 따라 보상해 드립니다. 파손 발견 즉시 현장에서 이사 팀장에게 알리고 사진 등 증거를 남기시는 것이 중요합니다. 이사 후 발견 시에는 7일 이내에 업체에 통보하셔야 합니다. (참고: 이사화물 표준약관)
+        <a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=230635&efYd=20200805#0000" target="_blank" rel="noopener noreferrer" class="external-link">이사화물 표준약관 법제처 링크</a>
+        </dd>
+
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 같은 동 이사 시 짐을 다시 포장해야 하나요?</strong></dt>
+        <dd>**같은아파트이사**는 이동 거리가 짧더라도 안전을 위해 꼼꼼하게 포장하는 것이 중요합니다. 포장재를 아끼지 않고 가구, 가전, 식기류 등을 꼼꼼하게 포장해야 이사 중 흠집이나 파손을 방지할 수 있습니다. 특히 층간 이동 시에는 엘리베이터 이용이나 계단 이용이 불가피하므로 전문 포장 서비스가 필수적입니다.</dd>
+        
+        <dt tabindex="0" aria-expanded="false"><strong>Q. 이사 서비스에 청소도 포함되나요?</strong></dt>
+        <dd>포장이사 서비스에는 기본적인 마무리 청소가 포함됩니다. 이사 종료 후 가구 배치와 짐 정리가 완료되면, 사용했던 공간을 간단하게 정리해 드립니다. 전문적인 입주 청소나 이사 후 청소는 별도의 서비스로 진행됩니다.</dd>
+      </dl>
+    </section>
+    
+    <section id="quote_form">
+      <h2>같은아파트이사 무료 견적 요청하기</h2>
+      <p>아래 양식에 정보를 입력하시면 **같은아파트이사** 전문 업체로부터 **무료 견적**을 받아보실 수 있습니다. 정확한 견적을 위해 가능한 한 상세한 정보를 입력해 주세요.</p>
+      <form action="/submit-quote" method="post">
+        <div class="form-group">
+          <label for="name">이름</label>
+          <input type="text" id="name" name="name" placeholder="이름을 입력하세요" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">연락처</label>
+          <input type="tel" id="phone" name="phone" placeholder="010-0000-0000" required>
+        </div>
+        <div class="form-group">
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" placeholder="email@example.com">
+        </div>
+        <div class="form-group">
+          <label for="start_location">출발지 주소 (아파트명, 동호수)</label>
+          <input type="text" id="start_location" name="start_location" placeholder="예: [아파트명] 101동 1001호" required>
+        </div>
+        <div class="form-group">
+          <label for="end_location">도착지 주소 (아파트명, 동호수)</label>
+          <input type="text" id="end_location" name="end_location" placeholder="예: [아파트명] 105동 2005호" required>
+        </div>
+        <div class="form-group">
+          <label for="move_date">희망 이사 날짜</label>
+          <input type="text" id="move_date" name="move_date" placeholder="예: 2026년 5월 15일">
+        </div>
+        <div class="form-group">
+          <label for="apartment_size">평수/이사 짐의 양</label>
+          <select id="apartment_size" name="apartment_size" required>
+            <option value="">-- 선택하세요 --</option>
+            <option value="원룸">원룸 (10평 미만)</option>
+            <option value="투룸">투룸 (10~20평)</option>
+            <option value="20평대">20평대 아파트</option>
+            <option value="30평대">30평대 아파트</option>
+            <option value="40평대이상">40평대 이상 아파트</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="special_items">특수 짐 또는 요청 사항 (피아노, 에어컨, 입주청소 등)</label>
+          <textarea id="special_items" name="special_items" placeholder="추가 요청 사항을 입력하세요."></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit">견적 신청 완료</button>
+        </div>
+      </form>
+      <p>저희 **같은아파트이사 견적사이트**는 고객님의 새로운 출발을 응원하며, 언제나 최고의 서비스로 보답하겠습니다.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 같은아파트이사 전문 견적사이트. All Rights Reserved.</p>
+    <p>본 사이트는 같은 아파트 단지 내 이사 전문 업체를 비교하여 중개하는 플랫폼입니다.</p>
+    <p>사업자등록번호: [123-45-67890] | 대표: [홍길동] | 문의: contact@yourdomain.com</p>
+  </footer>
+
+  <script>
+    // FAQ 아코디언 기능 (접기/펼치기)
+    document.querySelectorAll('dl dt').forEach((dt) => {
+      dt.addEventListener('click', () => {
+        const expanded = dt.getAttribute('aria-expanded') === 'true' || false;
+        dt.setAttribute('aria-expanded', !expanded);
+        dt.classList.toggle('active');
+      });
+      dt.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          dt.click();
+        }
+      });
+    });
+  </script>
+
+
+  
